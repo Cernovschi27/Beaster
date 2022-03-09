@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <HorizontalScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="320dp"
+        android:layout_height="match_parent" >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.login.LoginFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_5"
+        android:layout_marginEnd="@dimen/margin_5"
+        android:id="@+id/internet_status_layout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/connection_status"
+            android:textSize="@dimen/text_12"
+            android:id="@+id/internet_status_label"
+            />
+        <ImageView
+            android:layout_width="@dimen/online_displayer_size"
+            android:layout_height="@dimen/online_displayer_size"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_marginStart="@dimen/margin_2"
+            android:background="@color/online_color"
+            android:id="@+id/online_informator"
+            android:contentDescription="@string/internet_status_displayer" />
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="@dimen/circle_image_size_login"
+        android:layout_height="@dimen/circle_image_size_login"
+        android:layout_below="@id/internet_status_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_5"
+        android:src="@drawable/ic_baseline_add_24"
+        app:civ_border_color="@color/variant"
+        app:civ_border_width="@dimen/circle_image_border" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="@dimen/login_field_width"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/til_email"
+        android:layout_marginTop="@dimen/margin_25"
+        android:hint="@string/email_hint"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:helperText="@string/helper_text_required"
+        app:helperTextTextColor="@color/red"
+        android:layout_below="@id/profile_image"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text_email"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="@dimen/login_field_width"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/til_email"
+        android:layout_marginTop="@dimen/margin_25"
+        android:id="@+id/til_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:helperText="@string/helper_text_required"
+        app:helperTextTextColor="@color/red"
+        android:hint="@string/password_hint"
+        app:endIconMode="password_toggle"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:id="@+id/edit_text_password"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_button_text"
+        android:layout_below="@id/til_password"
+        android:layout_marginTop="@dimen/margin_25"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button_login"
+        />
+
+    <Button
+        android:id="@+id/button_edit_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_25"
+        android:text="@string/edit_info_button_text" />
+
+    <Button
+        android:id="@+id/button_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_edit_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_25"
+        android:text="@string/register_button_text" />
+</RelativeLayout>
+    </ScrollView>
+    </HorizontalScrollView>
+</layout>
