@@ -41,6 +41,7 @@ class UIValidator {
     fun checkPassword(text: CharSequence, specialChars: String): Boolean {
         //minimum length - 6, at least one capital letter, at least one lowercase letter,
         //at least one symbol and at least one digit
+
         if (text.length < MIN_PASSWORD_LENGTH)
             return false
 
