@@ -17,13 +17,13 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
     private val validator = UIValidator()
-    private val res: Resources = getInstrumentation().getTargetContext().getResources()
+    private val res: Resources = getInstrumentation().targetContext.resources
     private val specialChars = res.getString(R.string.allowed_password_special_chars)
 
     @Test
     fun useAppContext() {
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val appContext = getInstrumentation().targetContext
         assertEquals("com.app.music", appContext.packageName)
     }
 
@@ -123,4 +123,21 @@ class ExampleInstrumentedTest {
             specialChars)
         assertTrue(response)
     }
+    @Test
+    fun validate3SameSuccess(){
+        assertTrue(validator.contains3Same("RaResastilean"))
+    }
+    @Test
+    fun validate3SameMinLength(){
+        assertFalse(validator.contains3Same("gabi"))
+    }
+    @Test
+    fun validate3SameC3(){
+        assertFalse(validator.contains3Same("GGaaaabi"))
+    }
+    @Test
+    fun validate3SameC4(){
+        assertFalse(validator.contains3Same(""))
+    }
+
 }

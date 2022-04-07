@@ -9,12 +9,22 @@ class UIValidator {
     /**
      * check if given text contains more than 3 same characters
      */
-    private fun contains3Same(text: CharSequence): Boolean {
+     fun contains3Same(text: CharSequence): Boolean {
+        if (text.length < MIN_NAME_LENGTH)
+            return false
+        var maxCount = 0
+        var isLowercase = false
         for (c: Char in text) {
-            if (text.count { it == c } >= CHAR_SEQUENCE_MIN)
-                return true
+            if (text.count { it == c } >= maxCount) {
+                maxCount = text.count { it == c }
+                if (c.isLowerCase())
+                    isLowercase = true
+                else isLowercase = false
+            }
         }
-        return false
+        if (maxCount > CHAR_SEQUENCE_MIN && isLowercase)
+            return false
+        else return true
     }
 
     fun checkPhoneNumber(text: CharSequence): Boolean {
@@ -31,8 +41,7 @@ class UIValidator {
     }
 
     fun checkFirstName(text: CharSequence): Boolean = text.length > MIN_NAME_LENGTH
-    fun checkLastName(text: CharSequence): Boolean =
-        text.length > MIN_NAME_LENGTH && !contains3Same(text)
+    fun checkLastName(text: CharSequence): Boolean = contains3Same(text)
 
     fun checkEmail(text: CharSequence): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(text).matches()
