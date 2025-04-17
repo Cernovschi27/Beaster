@@ -42,8 +42,12 @@ jobs:
       with:
         node-version: '12'
 
-    - name: Install Android SDK
-      uses: malinskiy/action-android/install-sdk@release/0.1.2
+    - name: Install Android SDK components
+      run: |
+        yes | sdkmanager --sdk_root="${ANDROID_SDK_ROOT}" \
+          "platform-tools" \
+          "platforms;android-31" \
+          "build-tools;31.0.0"
 
     - name: Install Gradle dependencies
       run: chmod +x ./gradlew && ./gradlew androidDependencies
