@@ -42,20 +42,22 @@ jobs:
       with:
         node-version: '12'
 
-    - name: Install Android SDK command-line tools
-      run: |
-        mkdir -p ~/android-sdk/cmdline-tools
-        wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O tools.zip
-        unzip tools.zip -d ~/android-sdk/cmdline-tools
-        mv ~/android-sdk/cmdline-tools/cmdline-tools ~/android-sdk/cmdline-tools/latest
-        export ANDROID_SDK_ROOT=~/android-sdk
-        export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH
-        yes | sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
-        yes | sdkmanager --licenses
-      shell: bash
+    - name: Setup Android SDK (API 34)
+      uses: android-actions/setup-android@v3
+      with:
+        # Install core tools + Platform 34 + Build‑Tools 34.0.0
+        packages: |
+          tools
+          platform-tools
+          platforms;android-34
+          build-tools;34.0.0
 
     - name: Install Gradle dependencies
-      run: chmod +x ./gradlew && ./gradlew androidDependencies
+      run: |
+        chmod +x ./gradlew
+        ./gradlew androidDependencies
 
     - name: Build with Gradle
-      run: chmod +x ./gradlew && ./gradlew build
+      run: |
+        chmod +x ./gradlew
+        ./gradlew build
