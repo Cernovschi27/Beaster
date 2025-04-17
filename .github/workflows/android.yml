@@ -42,10 +42,11 @@ jobs:
       with:
         node-version: '12'
 
-    - name: Setup Android SDK (API 34)
+    - name: Install Android SDK
       uses: android-actions/setup-android@v3
       with:
-        # Install core tools + Platform 34 + Build‑Tools 34.0.0
+        # Install Command‑Line Tools 12.0 (build 11076708), then SDK 34 + build‑tools 34.0.0
+        cmdline-tools-version: 11076708
         packages: |
           tools
           platform-tools
