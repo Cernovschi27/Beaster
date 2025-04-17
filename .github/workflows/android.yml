@@ -20,19 +20,14 @@ jobs:
           java-version: '11'
 
       - name: Cache Gradle packages
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ github.sha }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-
-      - name: Clear Gradle Cache
-        run: |
-          echo "Clearing Gradle cache..."
-          rm -rf ~/.gradle/caches/*
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -40,17 +35,12 @@ jobs:
           node-version: '12'
 
       - name: Cache Node.js modules
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-${{ github.sha }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
-      - name: Clear Node.js Cache
-        run: |
-          echo "Clearing Node.js cache..."
-          rm -rf ~/.npm/*
 
       - name: Install Android SDK
         uses: malinskiy/action-android/install-sdk@release/0.1.2
@@ -59,4 +49,4 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Build with Gradle
-        run: ./gradlew clean build
+        run: ./gradlew build
