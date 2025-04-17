@@ -44,10 +44,12 @@ jobs:
 
     - name: Install Android SDK components
       run: |
-        yes | sdkmanager --sdk_root="${ANDROID_SDK_ROOT}" \
+        yes | sdkmanager \
           "platform-tools" \
           "platforms;android-31" \
           "build-tools;31.0.0"
+        yes | sdkmanager --licenses
+
 
     - name: Install Gradle dependencies
       run: chmod +x ./gradlew && ./gradlew androidDependencies
